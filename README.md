@@ -1,82 +1,87 @@
 # FIT-Competition-DataBASE
 
-🌍 Sustainable Air Quality & Energy Analysis with Machine Learning
-This project was developed for a data science competition focused on sustainability and climate change. Among 80 participating teams, this project placed in the Top 8 Finalists, recognized for its innovative approach and strong analytical rigor.
+# 🌍 Sustainable Air Quality & Energy Analysis with Machine Learning
 
-🧠 Project Objective
-To explore the relationship between global air pollution and energy consumption using open-source datasets and machine learning models. The goal was to generate actionable insights and predictive models to support sustainable development goals and environmental policy-making.
+This project was developed for a data science competition focused on sustainability and climate change. Among **80 participating teams**, this project placed in the **🏆 Top 8 Finalists**, recognized for its innovative approach and strong analytical rigor.
 
-📊 Datasets Used
-Global Air Pollution Dataset
-Includes concentrations of major pollutants like PM2.5, NO₂, CO₂ across countries and years.
+---
 
-Sustainable Energy Dataset
-Contains data on renewable and non-renewable energy production, energy access, and electricity use by source.
+## 🧠 Project Objective
 
-🔍 Methodology Overview
-1. Data Cleaning
-Standardized country names and formats
+To explore the relationship between global **air pollution** and **energy consumption** using open-source datasets and machine learning models. The goal was to generate actionable insights and predictive models to support **Sustainable Development Goals (SDGs)** and environmental policy-making.
 
-Removed null or irrelevant values
+---
 
-Harmonized temporal and spatial coverage
+## 📊 Datasets Used
 
-2. Exploratory Data Analysis (EDA)
-Uncovered patterns and correlations between energy types and air pollution
+- **Global Air Pollution Dataset**  
+  Includes concentrations of major pollutants like **PM2.5**, **NO₂**, and **CO₂** across countries and years.
 
-Identified outliers and global trends in emissions and energy practices
+- **Sustainable Energy Dataset**  
+  Contains data on **renewable and non-renewable energy** production, energy access, and electricity use by source.
 
-3. Dataset Merging
-Merged both datasets on Country and Year to enable integrated analysis
+---
 
-4. Preprocessing & Feature Engineering
-Scaled numerical features
+## 🔍 Methodology Overview
 
-Reduced dimensionality and handled multicollinearity
+### 1. **Data Cleaning**
+- Standardized country names and formats  
+- Removed null or irrelevant values  
+- Harmonized temporal and spatial coverage
 
-Selected most predictive features for modeling
+### 2. **Exploratory Data Analysis (EDA)**
+- Identified patterns and correlations between energy types and air pollution  
+- Visualized global trends and outliers
 
-5. Machine Learning Models
-Built and evaluated several regression models to predict pollutant levels:
+### 3. **Dataset Merging**
+- Merged both datasets on `Country` and `Year` for integrated analysis
 
-Support Vector Regression (SVR)
+### 4. **Preprocessing & Feature Engineering**
+- Scaled numerical features  
+- Removed multicollinearity  
+- Selected key predictors for modeling
 
-ElasticNet Regression
+### 5. **Machine Learning Models**
+Used several regression models to predict pollutant levels:
+- `Support Vector Regression (SVR)`
+- `ElasticNet Regression`
+- `Random Forest Regressor`
+- `XGBoost Regressor`
+- `Stacking Regressor` (ensemble of all models)
 
-Random Forest Regressor
+### 6. **Model Evaluation**
+- Evaluated using **R²** and **RMSE**  
+- Visualized **actual vs. predicted** pollution levels  
+- Found **ensemble models** to be the most accurate and robust
 
-XGBoost Regressor
+---
 
-Stacking Regressor (ensemble approach combining all above models)
+## 🌱 Key Findings
 
-6. Model Evaluation
-Assessed performance using R² and RMSE
+- Countries with higher shares of **renewable energy** tend to have **lower emissions (PM2.5, CO₂)**  
+- Ensemble models showed **strong predictive accuracy**, indicating complex relationships between variables  
+- Energy access inequality is linked to higher pollution in some underdeveloped regions
 
-Visualized actual vs. predicted pollutant values
+---
 
-Found ensemble models to perform most robustly across countries
+## 🌍 Impact & Policy Implications
 
-🌱 Key Findings
-Countries with higher shares of renewable energy tend to have lower PM2.5 and CO₂ emissions.
+- Helps identify which energy policies are most effective for **emission reduction**  
+- Supports progress tracking for **UN SDG 7 (Clean Energy)** and **SDG 13 (Climate Action)**  
+- Provides data-driven insights for **governments and NGOs**
 
-Ensemble models showed higher predictive accuracy, suggesting that pollutant levels are influenced by complex interactions between multiple energy indicators.
+---
 
-Energy access inequality was found to correlate with higher pollution in underdeveloped regions.
+## 🛠 Tools & Technologies
 
-🌍 Impact & Policy Implications
-Supports policymakers in identifying which energy reforms could have the greatest environmental benefit.
+- `Python`, `Pandas`, `NumPy`  
+- `Scikit-learn`, `XGBoost`  
+- `Matplotlib`, `Seaborn`  
+- `Jupyter Notebook`
 
-Helps organizations monitor progress toward UN SDG 7 (Affordable and Clean Energy) and SDG 13 (Climate Action).
+---
 
-🛠 Tools & Technologies
-Python, Pandas, NumPy
+## 🏆 Competition Recognition
 
-Scikit-learn, XGBoost
-
-Matplotlib, Seaborn
-
-Jupyter Notebook
-
-🏆 Competition Recognition
-🎉 Top 8 Finalist out of 80 teams
-This project stood out for its integration of real-world datasets, machine learning depth, and relevance to global sustainability challenges.
+🎉 **Top 8 Finalist** out of 80 teams  
+Recognized for exceptional integration of data, machine learning modeling, and sustainability relevance.
