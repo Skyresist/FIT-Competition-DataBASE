@@ -1,87 +1,50 @@
-# FIT-Competition-DataBASE
+# Air Quality Prediction & Energy Recommender — FIT Competition 2025
 
-# 🌍 Sustainable Air Quality & Energy Analysis with Machine Learning
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Skyresist/FIT-Competition-DataBASE/blob/main/dataBASE.ipynb)
+![Result](https://img.shields.io/badge/Result-Top%208%20of%2080%20teams-6f42c1)
 
-This project was developed for a data science competition focused on sustainability and climate change. Among **80 participating teams**, this project placed in the **🏆 Top 8 Finalists**, recognized for its innovative approach and strong analytical rigor.
+Team **DataBASE**'s entry for the **FIT Competition 2025** (sustainability & climate theme), which reached the **Top 8 finalists out of 80 teams**.
 
----
+The project links a country's **air quality** to how it **produces and consumes energy**, then turns that into a tool: enter a country (or a new set of pollution and energy figures) and get a predicted Air Quality Index plus rule-based energy-policy recommendations.
 
-## 🧠 Project Objective
+## Pipeline
 
-To explore the relationship between global **air pollution** and **energy consumption** using open-source datasets and machine learning models. The goal was to generate actionable insights and predictive models to support **Sustainable Development Goals (SDGs)** and environmental policy-making.
+1. **Clean** — 23,463 city-level air-pollution records (CO, O₃, NO₂, PM2.5 and overall AQI); 23,035 remain after removing missing and invalid rows.
+2. **Aggregate** — average AQI values per country.
+3. **Merge** — join with the Global Sustainable Energy dataset (2020: electricity from fossil, nuclear and renewable sources; energy use per capita) to build one modelling table covering 154 countries.
+4. **Explore** — pollutant distributions, top fossil-fuel producers, energy mix vs. air quality.
+5. **Model** — tune each model with 5-fold `GridSearchCV` on an 80/20 train–test split, and record training time and peak memory for each.
+6. **Recommend** — rule-based recommendations driven by a country's AQI level, energy mix and consumption.
+7. **Prototype** — interactive notebook cells for looking up a country or entering new values.
 
----
+## Models compared
 
-## 📊 Datasets Used
+| Model | Test RMSE | Test R² |
+|---|---:|---:|
+| Support Vector Regression | 4.42 | 0.979 |
+| ElasticNet | 3.94 | 0.983 |
+| Random Forest | 3.85 | 0.984 |
+| XGBoost | 3.21 | 0.989 |
+| **Stacking ensemble** | **3.20** | **0.989** |
 
-- **Global Air Pollution Dataset**  
-  Includes concentrations of major pollutants like **PM2.5**, **NO₂**, and **CO₂** across countries and years.
+Blending and voting ensembles were also tested.
 
-- **Sustainable Energy Dataset**  
-  Contains data on **renewable and non-renewable energy** production, energy access, and electricity use by source.
+## Limitations — what I'd do differently
 
----
+The overall AQI is defined from the individual pollutant sub-indices, and those sub-indices were model inputs. That makes the target largely recoverable from the features, which explains the near-perfect R² across every model; these scores overstate real predictive power.
 
-## 🔍 Methodology Overview
+A revised version would:
+- **drop the pollutant sub-indices** and predict AQI from energy and socio-economic variables only. This is the question the project actually cares about: how much does a country's energy mix explain its air quality?
+- use **group-aware cross-validation** by country, so the same country never appears in both train and test.
 
-### 1. **Data Cleaning**
-- Standardized country names and formats  
-- Removed null or irrelevant values  
-- Harmonized temporal and spatial coverage
+## Tools
 
-### 2. **Exploratory Data Analysis (EDA)**
-- Identified patterns and correlations between energy types and air pollution  
-- Visualized global trends and outliers
+Python · pandas · NumPy · scikit-learn · XGBoost · Matplotlib · Seaborn · Jupyter / Colab
 
-### 3. **Dataset Merging**
-- Merged both datasets on `Country` and `Year` for integrated analysis
+## Files
 
-### 4. **Preprocessing & Feature Engineering**
-- Scaled numerical features  
-- Removed multicollinearity  
-- Selected key predictors for modeling
-
-### 5. **Machine Learning Models**
-Used several regression models to predict pollutant levels:
-- `Support Vector Regression (SVR)`
-- `ElasticNet Regression`
-- `Random Forest Regressor`
-- `XGBoost Regressor`
-- `Stacking Regressor` (ensemble of all models)
-
-### 6. **Model Evaluation**
-- Evaluated using **R²** and **RMSE**  
-- Visualized **actual vs. predicted** pollution levels  
-- Found **ensemble models** to be the most accurate and robust
-
----
-
-## 🌱 Key Findings
-
-- Countries with higher shares of **renewable energy** tend to have **lower emissions (PM2.5, CO₂)**  
-- Ensemble models showed **strong predictive accuracy**, indicating complex relationships between variables  
-- Energy access inequality is linked to higher pollution in some underdeveloped regions
-
----
-
-## 🌍 Impact & Policy Implications
-
-- Helps identify which energy policies are most effective for **emission reduction**  
-- Supports progress tracking for **UN SDG 7 (Clean Energy)** and **SDG 13 (Climate Action)**  
-- Provides data-driven insights for **governments and NGOs**
-
----
-
-## 🛠 Tools & Technologies
-
-- `Python`, `Pandas`, `NumPy`  
-- `Scikit-learn`, `XGBoost`  
-- `Matplotlib`, `Seaborn`  
-- `Jupyter Notebook`
-
----
-
-## 🏆 Competition Recognition
-
-🎉 **Top 8 Finalist** out of 80 teams  
-Recognized for exceptional integration of data, machine learning modeling, and sustainability relevance.
+| File | Contents |
+|---|---|
+| `dataBASE.ipynb` | Full workflow: cleaning, EDA, merging, modelling, recommender, prototype |
+| `global air pollution dataset.csv` | City-level AQI data |
+| `global-data-on-sustainable-energy (1).csv` | Country-level energy data |
